@@ -13,10 +13,11 @@ In simple term, assembly language is a low-level language designed for specific 
 ## Advantages 
 
 Having an understanding of assembly language gives advantages, not only for reverse engineer but also for developer. To sum it up, gaining knowledge of assembler gives you understanding of:
-    - how processor accesses and executes instructions;
-    - how instructions access and process data;
-    - how data is represented in memory;
-    - how program interact with OS, processor, and devices.
+
+* how processor accesses and executes instructions;
+* how instructions access and process data;
+* how data is represented in memory;
+* how program interact with OS, processor, and devices.
 
 ## Data Size
 
@@ -31,8 +32,9 @@ In general, we use several terms to refer a chunk of data.
 ## Execution Cycle
 
 Although it might be differ for each processor, when a single instruction is executed from memory typically there are several steps happen. The process is called `execution cycle` and can be divided into:
-    - fetch, fetching the instruction from memory.
-    - decode, decoding or identifying the instruction.
-    - execute, executing the instruction.
+
+* fetch, fetching the instruction from memory.
+* decode, decoding or identifying the instruction.
+* execute, executing the instruction.
 
 Processor may access one or more bytes of memory at a time. 

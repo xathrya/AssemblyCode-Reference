@@ -44,16 +44,17 @@ section .text
 _start:
 ; to illustrate the memory layout, we will use following code
     mov     eax, lenequ
-    mov     eax, lendb 
+    mov     eax, dword [lendb]
     
 ; if we illustrate the memory layout, it would be 
-; something like this.
+; something like this (assuming that the address of code is directly
+; after the data section)
 ;
 ; addr      code            label   instruction
 ;-------------------------------------------
 ; 402000                    lenequ  equ 4
 ; 402000    04              lendb   db  4
 ; 402001    b8 04 00 00 00          mov eax, lenequ
-; 402006    b8 00 20 40 00          mov eax, lendb
+; 402006    a1 00 20 40 00          mov eax, [lendb]
 
     hlt         ; Halt the execution

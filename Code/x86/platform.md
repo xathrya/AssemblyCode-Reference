@@ -45,47 +45,48 @@ The x86 architecture has several registers that is divided into categories. A ge
 
 A 32-bit registers have prefix E, such as EAX. While 64-bits registers have prefix R, such as RAX. For some registers (EAX, EBX, ECX, EDX) we can access the lower half registers by eliminating the prefix. Thus,
 
-    - EAX (32-bit) -> AX (16-bit)
-    - EBX (32-bit) -> BX (16-bit)
-    - ECX (32-bit) -> CX (16-bit)
-    - EDX (32-bit) -> DX (16-bit)
+- EAX (32-bit) -> AX (16-bit)
+- EBX (32-bit) -> BX (16-bit)
+- ECX (32-bit) -> CX (16-bit)
+- EDX (32-bit) -> DX (16-bit)
     
 Furthermore, we can also access the higher half or lower half of AX/BX/CX/DX by changing the X to H (Higher half) or L (Lower half). Thus, 
 
-    - AX (16-bit) = AH (8-bit) + AL (8-bit)
-    - BX (16-bit) = BH (8-bit) + BL (8-bit)
-    - CX (16-bit) = CH (8-bit) + CL (8-bit)
-    - DX (16-bit) = DH (8-bit) + DL (8-bit)
+- AX (16-bit) = AH (8-bit) + AL (8-bit)
+- BX (16-bit) = BH (8-bit) + BL (8-bit)
+- CX (16-bit) = CH (8-bit) + CL (8-bit)
+- DX (16-bit) = DH (8-bit) + DL (8-bit)
 
 To sum it up, the register can be seen as something like this.
 
-    ```
-    RAX                  EAX        AX
-    --------------------------------------------
-    |                     |          | AH | AL |
-    --------------------------------------------
-    64                   32         16    8    0
-    ```
+```
+RAX                  EAX        AX
+--------------------------------------------
+|                     |          | AH | AL |
+--------------------------------------------
+64                   32         16    8    0
+```
 
 As for x86-64, we have additional registers R8 to R15. The R0 to R7 is a canonical name to existing registers
-    - R0 = RAX
-    - R1 = RCX
-    - R2 = RDX
-    - R3 = RBX
-    - R4 = RSP
-    - R5 = RBP
-    - R6 = RSI
-    - R7 = RDI
+
+- R0 = RAX
+- R1 = RCX
+- R2 = RDX
+- R3 = RBX
+- R4 = RSP
+- R5 = RBP
+- R6 = RSI
+- R7 = RDI
 
 We can treat the lowest 32-bits of each registers as register itself by appending suffix D. The lower half of it can be access by suffix W. And the more of it is accessible by suffix B. This one can be an example:
 
-    ```
-    R8                   R8D        R8W  R8B
-    --------------------------------------------
-    |                     |          |    |    |
-    --------------------------------------------
-    64                   32         16    8    0
-    ```
+```
+R8                   R8D        R8W  R8B
+--------------------------------------------
+|                     |          |    |    |
+--------------------------------------------
+64                   32         16    8    0
+```
 
 Segment registers are set of register used for accessing memory segment. The segment itself is a region of memory, usually the size is multiple of page, that has certain functions.
 
@@ -102,15 +103,15 @@ The last one is EFLAGS. This register is a flag register. Many instructions invo
     Bit Flag    | 15 | 14 | 13 | 12 | 11 | 10 |  9 |  8 |  7 |  6 |  5 |  4 |  3 |  2 |  1 |  0 |
                 ---------------------------------------------------------------------------------
 
-    - Overflow Flag (O)
-    - Direction Flag (D)
-    - Interrupt Flag (I)
-    - Trap Flag (T)
-    - Sign Flag (S)
-    - Zero Flag (Z)
-    - Auxiliary Carry Flag (A)
-    - Parity Flag (P)
-    - Carry Flag (C)
+* Overflow Flag (O)
+* Direction Flag (D)
+* Interrupt Flag (I)
+* Trap Flag (T)
+* Sign Flag (S)
+* Zero Flag (Z)
+* Auxiliary Carry Flag (A)
+* Parity Flag (P)
+* Carry Flag (C)
 
 The XMM registers are register for floating point operations. A set of XMM registers consists of 16 registers, each 128-bits wide.
 

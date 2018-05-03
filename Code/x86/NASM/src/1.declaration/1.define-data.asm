@@ -25,9 +25,12 @@
     global _start
 
 ; Define initialized data
-; When generating the binary code, NASM will create a stream
-; of bytes in the corresponding setion. The value, which defined 
-; by user, will be written to the reserve space.
+;
+;   [label:] dX value [;comment]
+;
+; When generating the binary code, NASM will allocate space for
+; a stream of bytes in the corresponding setion. The value, which 
+; defined by user, will be written to the reserve space.
 ;
 ; Because the x86 is a little endian processor then the hexpairs
 ; will be stored in reverse order, from LSB to MSB.
@@ -40,29 +43,40 @@
 ;   dw = write words (16-bits)
 ;   dd = write double words (32-bits)
 ;   dq = write quad words (64-bits) or double-precision float
-;   dt = write 80-bits floating-point constant (extended-precision float)
+;   dt = write ten bytes (80-bits) or extended-precision float
 ;
 section .data
     ; declare integers
-    db    0x55                ; just the byte 0x55
-    db    0x55, 0x56, 0x57    ; three bytes in succession
-    db    'a', 0x55           ; character constants are OK
-    db    'hello',13,10,'$'   ; so are string constants
-    dw    0x1234              ; 0x34 0x12
-    dw    'a'                 ; 0x61 0x00 (it's just a number)
-    dw    'ab'                ; 0x61 0x62 (character constant)
-    dw    'abc'               ; 0x61 0x62 0x63 0x00 (string)
-    dd    0x12345678          ; 0x78 0x56 0x34 0x12
-    dd    1.234567e20         ; floating-point constant
-    dq    0x123456789abcdef0  ; eight byte constant
+    db    0x55                      ; just the byte 0x55
+    db    0x55, 0x56, 0x57          ; three bytes in succession
+    db    'a', 0x55                 ; character constants are OK
+    db    'hello',13,10,'$'         ; so are string constants
+    dw    0x1234                    ; 0x34 0x12
+    dw    'a'                       ; 0x61 0x00 (it's just a number)
+    dw    'ab'                      ; 0x61 0x62 (character constant)
+    dw    'abc'                     ; 0x61 0x62 0x63 0x00 (string)
+    dd    0x12345678                ; 0x78 0x56 0x34 0x12
+    dd    1.234567e20               ; floating-point constant
+    dq    0x123456789abcdef0        ; eight bytes constant
+    dt    0x123456789abcdef01234    ; ten bytes constant
 
     ; declare floating points
-    dq    1.234567e20         ; eight byte as double-precision float
-    dt    1.234567e20         ; extended-precision float
+    dq    1.234567e20           ; eight byte as double-precision float
+    dt    1.234567e20           ; extended-precision float
 
 ; NASM can also write data imported from specified binary data file.
 ; This instruction is equivalent to using db with content of file.
     incbin  "file.txt"
+
+; If the data has repetition, the `times` prefix can be used for 
+; indicating that the next data should be replicated for a certain copies.
+    buffer1: times 10 db 0xA5   ; buffer1 would have 10 consecutive of 0xA5 (e.g: 0xA5, 0xA5, 0xA5, ...)
+    buffer2: times 5 db 1, 2    ; buffer2 would have 5 consecutive of 1 and 2 (e.g: 1, 2, 1, ...)
+
+    ; `times` is so versatile that the argument is not just a numeric constant
+    ; but also a numeric expression.
+    buffer3: db 'Hello NASM'            ; this will ensure a 64 string buffer
+             times 64-$+buffer3 db ' '
 
 section .text
 _start:
