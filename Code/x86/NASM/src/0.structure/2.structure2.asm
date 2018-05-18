@@ -26,7 +26,7 @@
 ;---------------------------------------------------
 
 ; This is one of directive
-    global _start
+    [global _start]
 
 ; The [section .xyz] and section .xyz are closely related but not same.
 ; 
