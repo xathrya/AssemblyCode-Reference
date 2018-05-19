@@ -113,7 +113,32 @@ The last one is EFLAGS. This register is a flag register. Many instructions invo
 * Parity Flag (P)
 * Carry Flag (C)
 
-The XMM registers are register for floating point operations. A set of XMM registers consists of 16 registers, each 128-bits wide.
+#### MMX
+
+Supplemental instruction set. Most of the instructions are SIMD (Single Instruction Multiple Data), meaning that single instruction work with multiple pieces of data in parallel.
+
+There are 8 64-bits MMX registers, from MM0 to MM7. They were made overlap with the FPU register. This means the MMX instructions and FPU instructions cannot be used simultaneously.
+
+The registers are 64-bits wide but can be broken down as follows:
+
+* 2x 32-bit value
+* 4x 16-bit value
+* 8x  8-bit value
+
+#### SSE (Streaming SIMD Extensions)
+
+The SSE registers are register for floating point operations. The size of register is 128-bits. It also can be used to perform operations on a variety of data sizes and types. 
+
+There are 8 128-bits SSE registers, from XMM0 to XMM7. Unlike MMX, the SSE registers do not overlap with the floating point stack.
+
+The registers are 128-bits wide but can be broken down as follows:
+
+* 2x  64-bit floating points (double-precision)
+* 2x  64-bit integers
+* 4x  32-bit floating points (single-precision)
+* 4x  32-bit integers
+* 8x  16-bit integers
+* 16x  8-bit characters (bytes)
 
 ## Opcodes (Operation Codes)
 
