@@ -35,6 +35,11 @@ lenequ:  equ 4      ; whenever `lenequ` is found in source code
 ; The equ is used similar to what #define did in C
 ; #define lenequ 4
 
+; Another equivalent instruction for declaring a constant is
+; using %define
+; The %define instruction can be placed anywhere, it could be
+; even placed inside a scope of function.
+%define DLENEQU 10
 
 section .data
 ; Lets compare it to the 'db'
@@ -46,7 +51,7 @@ _start:
     mov     eax, lenequ
     mov     eax, dword [lendb]
     
-; if we illustrate the memory layout, it would be 
+; If we illustrate the memory layout, it would be 
 ; something like this (assuming that the address of code is directly
 ; after the data section)
 ;

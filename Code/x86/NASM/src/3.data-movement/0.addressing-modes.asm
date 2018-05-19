@@ -12,7 +12,11 @@
 ;   $ nasm -f win32 -o addressing-modes.o addressing-modes.asm
 ;
 ; Linking:
-;   $ gcc -m32 -o addressing-modes addressing-modes.o
+;   (linux)
+;   $ ld -m elf_i386 -o addressing-modes addressing-modes.o
+;
+;   (windows)
+;   $ ld -m i386pe -o addressing-modes addressing-modes.o
 ;
 ; This code snippet is for examples to topics
 ; and should not be run as an executable.

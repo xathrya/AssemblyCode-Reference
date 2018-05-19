@@ -11,7 +11,11 @@
 ;   $ nasm -f win32 -o unsigned.o unsigned.asm
 ;
 ; Linking:
-;   $ gcc -m32 -o unsigned unsigned.o
+;   (linux)
+;   $ ld -m elf_i386 -o unsigned unsigned.o
+;
+;   (windows)
+;   $ ld -m i386pe -o unsigned unsigned.o
 ;
 ; Run in debugging environment / emulator
 ; 

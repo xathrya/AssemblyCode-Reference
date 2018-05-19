@@ -11,7 +11,11 @@
 ;   $ nasm -f win32 -o template.o template.asm
 ;
 ; Linking:
-;   $ gcc -m32 -o template template.o
+;   (linux)
+;   $ ld -m elf_i386 -o templace templace.o
+;
+;   (windows)
+;   $ ld -m i386pe -o templace templace.o
 ;
 ; Run in debugging environment / emulator
 ; 

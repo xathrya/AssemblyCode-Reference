@@ -11,7 +11,11 @@
 ;   $ nasm -f win32 -o instruction.o instruction.asm
 ;
 ; Linking:
-;   $ gcc -m32 -o instruction instruction.o
+;   (linux)
+;   $ ld -m elf_i386 -o instruction instruction.o
+;
+;   (windows)
+;   $ ld -m i386pe -o instruction instruction.o
 ;
 ; This code snippet is for examples to topics
 ; and should not be run as an executable.

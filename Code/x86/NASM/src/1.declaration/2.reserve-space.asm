@@ -10,7 +10,11 @@
 ;   $ nasm -f win32 -o reserve-space.o reserve-space.asm
 ;
 ; Linking:
-;   $ gcc -m32 -o reserve-space reserve-space.o
+;   (linux)
+;   $ ld -m elf_i386 -o reserve-space reserve-space.o
+;
+;   (windows)
+;   $ ld -m i386pe -o reserve-space reserve-space.o
 ;
 ; This code snippet is for examples to topics
 ; and should not be run as an executable.

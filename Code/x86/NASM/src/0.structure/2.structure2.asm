@@ -50,7 +50,11 @@
 ; Label is an identification to position in code (and later in memory)
 ; A label can be viewed as function, destination of branching, and 
 ; part of loop.
-_start:         ; This label is a global, it means the linker or
+
+; nasm places no restrictions on white space within a line.
+; labels may have white space before and after them. 
+; the colon is also optional.
+_start          ; This label is a global, it means the linker or
                 ; outside code can refer to this position.
 
 ; These are instructions

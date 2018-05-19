@@ -11,7 +11,11 @@
 ;   $ nasm -f win32 -o signed.o signed.asm
 ;
 ; Linking:
-;   $ gcc -m32 -o signed signed.o
+;   (linux)
+;   $ ld -m elf_i386 -o signed signed.o
+;
+;   (windows)
+;   $ ld -m i386pe -o signed signed.o
 ;
 ; Run in debugging environment / emulator
 ; 
