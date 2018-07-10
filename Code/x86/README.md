@@ -1,13 +1,14 @@
 # Assembly Code Repository
----
 
 Different assembler:
+
 * FASM (Flat Assembler)
 * GAS (GNU Assembler)
 * MASM (Microsoft Assembler)
 * NASM (Netwide Assembler)
 
 Topics:
+
 * segment
 * declarations
 * signed and unsigned 

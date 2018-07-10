@@ -1,4 +1,4 @@
-; HelloWorld.asm
+; hello-syscall64.asm
 ; 
 ; Write "Hello, World!" on one line and then exits. 
 ; This code use Linux Syscall.

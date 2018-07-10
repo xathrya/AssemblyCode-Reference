@@ -1,4 +1,4 @@
-; HelloWorld.asm
+; hello-64b.asm
 ; 
 ; Write "Hello, World!" on one line and then exits.
 ; This code is depend on libc (C library) of compiler
@@ -21,9 +21,13 @@ section .data
 
 section .text
 main:
+	; make alignment
+	sub		rsp, 8
+
 	; push message
 	mov  	rdi, message
 	call 	printf
-	add esp, 8
+
+	add		rsp, 8
 	ret
 	
