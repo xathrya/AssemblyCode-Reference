@@ -125,6 +125,17 @@ The registers are 64-bits wide but can be broken down as follows:
 * 4x 16-bit value
 * 8x  8-bit value
 
+The MMX implement a technique called *Saturation Arithmetic*. In Saturation Arithmetic, the value of the registers never rolls over to 0 when the overflow happen. It also won't wrapped to maximum value if the register is underflow. In other words, the following equations hold in MMX (if we have 8-bit register):
+
+```
+255 + 100 = 255
+200 + 100 = 255
+0 - 100 = 0
+99 - 100 = 0
+```
+
+It might be counter-intuitive for most people who had used general purpose registers, but it makes sense in some situations. For example, if we try to make white brighter, it shouldn't become black.
+
 #### SSE (Streaming SIMD Extensions)
 
 The SSE registers are register for floating point operations. The size of register is 128-bits. It also can be used to perform operations on a variety of data sizes and types. 
