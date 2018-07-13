@@ -19,7 +19,7 @@
 ;
 ; Run in debugging environment / emulator
 ; 
-;------------------------------------------------------------------------------------------------------
+;-----------------------------------------------------------------------------
 
 ; There are 8 64-bit MMX registers.
 ;   MM0, MM1, MM2, MM3, MM4, MM5, MM6, MM7
@@ -36,7 +36,8 @@ _start:
     mov         eax, dword [dblock]
     mov         ebx, dword [dblock]
 
-; addition
+; Addition
+
     ; paddx     mm, mm/m64
     ; add packed integers
     paddb       mm0, mm1                ; 8-bit / byte
@@ -63,7 +64,8 @@ _start:
     paddusw     mm0, qword [qblock]
 
 
-; subtraction
+; Subtraction
+
     ; psubx     mm, mm/m64
     ; sub packed integers
     psubb       mm0, mm1                ; 8-bit / byte
@@ -90,7 +92,8 @@ _start:
     psubusw     mm0, qword [qblock]
 
 
-; multiplication
+; Multiplication
+
     ; pmadwd    mm, mm/m64
     ; multiply packed words, add adjacent doublewords result
     pmaddwd     mm1, mm0 
@@ -107,6 +110,7 @@ _start:
     ; of result
     pmullw      mm1, mm0 
     pmullw      mm1, qword [qblock] 
+
 
 
     hlt         ; Halt the execution

@@ -19,7 +19,7 @@
 ;
 ; Run in debugging environment / emulator
 ; 
-;---------------------------------------------------
+;-----------------------------------------------------------------------------
 
 ; There are 8 64-bit MMX registers.
 ;   MM0, MM1, MM2, MM3, MM4, MM5, MM6, MM7
@@ -32,8 +32,10 @@ section .data
 
 section .text 
 _start:
-; equality
+
+; Equality
 ; compares each unit in the groups for equality
+
     ; pcmpeqb   mm, mm/64
     pcmpeqb     mm1, mm0 
     pcmpeqb     mm0, qword [qblock]
@@ -46,8 +48,9 @@ _start:
     pcmpeqd     mm1, mm0 
     pcmpeqd     mm0, qword [qblock]
 
-; greater than
+; Greater than
 ; compares each unit in the groups for greater than
+
     ; pcmpgtb   mm, mm/64
     pcmpgtb     mm1, mm0 
     pcmpgtb     mm0, qword [qblock]
@@ -59,6 +62,7 @@ _start:
     ; pcmpgtd   mm, mm/64
     pcmpgtd     mm1, mm0 
     pcmpgtd     mm0, qword [qblock]
+
 
 
     hlt         ; Halt the execution

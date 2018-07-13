@@ -19,7 +19,7 @@
 ;
 ; Run in debugging environment / emulator
 ; 
-;---------------------------------------------------
+;-----------------------------------------------------------------------------
 
 ; There are 8 64-bit MMX registers.
 ;   MM0, MM1, MM2, MM3, MM4, MM5, MM6, MM7
@@ -32,6 +32,7 @@ section .data
 
 section .text 
 _start:
+
 ; AND
     ; pand      mm, mm/m64
     pand        mm0, mm1 
@@ -106,11 +107,6 @@ _start:
     psrlq       mm0, mm1 
     psrlq       mm0, qword [qblock]
 
-
-
-    
-
-    
 
 
     hlt         ; Halt the execution
