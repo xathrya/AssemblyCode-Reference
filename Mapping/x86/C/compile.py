@@ -44,10 +44,10 @@ class Compiler:
 class Gcc(Compiler):    
     def build(self):
         commands = []
-        commands.append(("x86/intel", "{0}      -S -masm=intel {1}/{3}.c -o {2}/x86/intel/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
-        commands.append(("x64/intel", "{0} -m32 -S -masm=intel {1}/{3}.c -o {2}/x64/intel/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
-        commands.append(("x86/att",   "{0}      -S {1}/{3}.c -o {2}/x86/att/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
-        commands.append(("x64/att",   "{0} -m32 -S {1}/{3}.c -o {2}/x64/att/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
+        commands.append(("x86/intel", "{0} -m32 -S -masm=intel {1}/{3}.c -o {2}/x86/intel/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
+        commands.append(("x64/intel", "{0} -m64 -S -masm=intel {1}/{3}.c -o {2}/x64/intel/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
+        commands.append(("x86/att",   "{0} -m32 -S {1}/{3}.c -o {2}/x86/att/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
+        commands.append(("x64/att",   "{0} -m64 -S {1}/{3}.c -o {2}/x64/att/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
         return commands
 
 
@@ -139,10 +139,10 @@ class Msvc(Compiler):
 class Clang(Compiler):
     def build(self):
         commands = []
-        commands.append(("x86/intel", "{0}      -S -masm=intel {1}/{3}.c -o {2}/x86/intel/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
-        commands.append(("x64/intel", "{0} -m32 -S -masm=intel {1}/{3}.c -o {2}/x64/intel/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
-        commands.append(("x86/att",   "{0}      -S {1}/{3}.c -o {2}/x86/att/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
-        commands.append(("x64/att",   "{0} -m32 -S {1}/{3}.c -o {2}/x64/att/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
+        commands.append(("x86/intel", "{0} -m32 -S -masm=intel {1}/{3}.c -o {2}/x86/intel/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
+        commands.append(("x64/intel", "{0} -m64 -S -masm=intel {1}/{3}.c -o {2}/x64/intel/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
+        commands.append(("x86/att",   "{0} -m32 -S {1}/{3}.c -o {2}/x86/att/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
+        commands.append(("x64/att",   "{0} -m64 -S {1}/{3}.c -o {2}/x64/att/{3}.asm".format(self.compiler_path, self.csrc, self.asmdst, self.filename)))
         return commands
 
 
@@ -154,6 +154,15 @@ class CBuilder(Compiler):
         commands.append(("x32", "{0} -S -o {2}/x86/{3}.asm {1}/{3}.c ".format(self.compiler_path.format("32"), self.csrc, self.asmdst, self.filename)))
         return commands
 
+def compile(filename, compilers):
+    cfilename = "src/" + filename + ".c"
+    if os.path.isfile(cfilename):
+        print("Compiling: {}".format(cfilename))
+        for compiler in compilers:
+            compiler.assemble(filename)
+    else:
+        print("{} is not found.".format(cfilename))
+
 if __name__ == '__main__':
     compilers = [ ]
     compilers.append(Gcc("gcc", GCC_PATH))
@@ -164,11 +173,7 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         while True:
             filename = input(">> ")
-
-            for compiler in compilers:
-                compiler.assemble(filename)
+            compile(filename, compilers)
     else:
         filename = sys.argv[1]
-
-        for compiler in compilers:
-            compiler.assemble(filename)
+        compile(filename, compilers)
