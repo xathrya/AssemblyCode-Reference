@@ -25,9 +25,10 @@ section .data
     msglen  equ $ - message
 
 ; The ABI
-; syscall is in eax
-; Argument are store in registers, from left to right (earlier to latest):
-;   EAX, EBX, ECX, EDX
+; syscall is in RAX
+; Argument are stores in registers, from left to right (earlier to latest):
+;       EBX, ECX, EDX, ESI, EDI, EBP
+; The return value is stored in RAX
 
 section .text
 _start:

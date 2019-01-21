@@ -95,7 +95,7 @@ _start:
     ; jump if the status ZF is clear
     jnz     .target     ; equivalent to jne
 
-; JE  (jump if above)
+; JA  (jump if above)
     ; jump if the status ~CF & ~ZF met
     ja      .target
     jnbe    .target    ; equivalent to ja

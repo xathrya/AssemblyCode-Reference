@@ -72,10 +72,9 @@ loop_body:                      ; set of instructions start here
     cmp     eax, 1
     jle     loop_body           ; back to loop_body if the conditions is satisfied
 
+loop_end:
     ; outside of loop
     mov     dword [var], eax 
-
-loop_end:
 
     
     hlt         ; Halt the execution

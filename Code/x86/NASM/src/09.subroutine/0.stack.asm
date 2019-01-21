@@ -52,7 +52,7 @@
 ;
 
 
-section .data
+section .bss
     dblock  resd    1
     qblock  resq    1
 
@@ -85,11 +85,11 @@ _start:
 
     ; push register
     push    eax                     ; 32-bit program = 32-bit stack entry
-    push    rax                     ; 64-bit program = 64-bit stack entry
+    ; push    rax                     ; 64-bit program = 64-bit stack entry
 
     ; push content at memory address
     push    dword [dblock]          ; 32-bit program = 32-bit stack entry
-    push    qword [qblock]          ; 64-bit program = 64-bit stack entry
+    ; push    qword [qblock]          ; 64-bit program = 64-bit stack entry
 
     ; When pushing value is success, the stack is growing.
     ; Stack grows from high-memory to low-memory,
@@ -101,16 +101,16 @@ _start:
 
     ; get the address
     mov     eax, esp                ; address of top (0th entry) of the stack
-    lea     eax, dword [esp]
-    lea     eax, dword [esp + 4]    ; get the 1st entry of the stack
+    lea     eax, [esp]
+    lea     eax, [esp + 4]          ; get the 1st entry of the stack
 
     ; get the data of stack's top entry
     mov     eax, dword [dblock]     ; 32-bit program = 32-bit stack entry
-    mov     rax, qword [qblock]     ; 64-bit program = 64-bit stack entry
+    ; mov     rax, qword [qblock]     ; 64-bit program = 64-bit stack entry
 
     ; modify stack entry
     mov     dword [esp], eax        ; 32-bit program = 32-bit stack entry
-    mov     qword [rsp], rax        ; 64-bit program = 64-bit stack entry
+    ; mov     qword [rsp], rax        ; 64-bit program = 64-bit stack entry
 
     ; usually local variable are referred as positive offset to ESP
     ; or negative offset to EBP
@@ -126,11 +126,11 @@ _start:
 
     ; pop register
     pop     eax                     ; 32-bit program = 32-bit stack entry
-    pop     rax                     ; 64-bit program = 64-bit stack entry
+    ; pop     rax                     ; 64-bit program = 64-bit stack entry
 
     ; pop content at memory address
     pop     dword [dblock]          ; 32-bit program = 32-bit stack entry
-    pop     qword [qblock]          ; 64-bit program = 64-bit stack entry
+    ; pop     qword [qblock]          ; 64-bit program = 64-bit stack entry
 
 
     hlt         ; Halt the execution

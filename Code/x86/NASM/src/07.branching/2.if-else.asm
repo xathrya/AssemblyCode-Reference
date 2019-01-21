@@ -80,7 +80,7 @@ _start:
 
     ; execute the do_action because the condition are met.
     mov     dword [var], eax    ; execute the implication action.
-    jmp     end                 ; avoid executing the "else" block
+    jmp     .end                ; avoid executing the "else" block
 
 .else:
     ; execute the do_alternative_action because the condition are not met.

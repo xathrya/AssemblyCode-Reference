@@ -25,9 +25,10 @@ section .data
     msglen  equ $ - message
 
 ; The ABI
-; sycall is in rax
-; Argument are store in registers, from left to right (earlier to latest):
-;   RDI, RSI, RDX, RCX, R8, R9, ... (the rest is on the stack)
+; sycall is in RAX
+; Argument are stored in registers, from left to right (earlier to latest):
+;       RDI, RSI, RDX, RCX, R10, R8, R9
+; The return value is stored in RAX
 
 section .text
 _start:

@@ -75,7 +75,7 @@ func_retval:
     ; Most of codes use EAX to store the return value, though there is no prohibition
     ; to use other registers but we will use this common convention.
 
-    mov     135
+    mov     eax, 135
     ret 
 
 
